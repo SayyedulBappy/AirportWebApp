@@ -1,0 +1,59 @@
+{% extends './base.html' %} {% block title %}Passenger Home{% endblock %} {% block body %}
+<main class="container text-left p-5">
+    <br>
+    <div class="card p-4">
+        <div class="card-header" style="font-size: 2rem;">
+            Invoice
+
+        </div>
+        <br>
+
+        <div class="card-body">
+
+            <p>PREPARED FOR: {{invoice.passenger.name}} </p>
+            <p>INVOICE NO: {{invoice.invoice_no}} </p>
+
+            <p>ISSUING AIRLINE: {{invoice.passenger.flight.airline.name}}</p>
+            <p>ISSUING LOCATION: BANGLADESH </p>
+            <p>ISSUED DATE: {{invoice.invoice_datetime.date}} </p>
+            <br>
+            <br>
+            <p> {{invoice.passenger.flight.departure_time.date}} </p>
+            <table class="table table-responsive">
+                <thead>
+                    <th>FLIGHT/CLASS</th>
+                    <th>TIME</th>
+                    <th>CITY/AIRPORT NAME</th>
+                    <th>STATUS/DURATION</th>
+                    <th>AIRFARE</th>
+                </thead>
+
+                <tbody class="table-striped">
+                    <td> {{invoice.passenger.flight.airline.name}} {{invoice.passenger.flight.flight_no}} / ECONOMY</td>
+                    <td>
+                        {{invoice.passenger.flight.departure_time.time}} <br> {{invoice.passenger.flight.arrival_time.time}} <br> {{invoice.passenger.flight.arrival_time.date}}
+
+                    </td>
+                    <td>
+                        {{invoice.passenger.flight.airline.source}} BSA International Airport <br> {{invoice.passenger.flight.airline.destination}}
+
+                    </td>
+
+                    <td>
+                        Confirmed/ {{ invoice.passenger.flight.arrival_time | timeuntil:invoice.passenger.flight.departure_time }}
+                    </td>
+
+                    <td> {{invoice.passenger.flight.airline.cost_per_seat}} </td>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+
+        </div>
+
+
+    </div>
+
+</main>
+{% endblock %}

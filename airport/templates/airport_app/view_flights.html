@@ -1,0 +1,73 @@
+ {% extends './base.html' %} {% block title %}View Flights{% endblock %} {% block body %}
+<main class="container">
+    <br>
+    <div class="bg-dark p-5 text-white">
+        <br>
+        <h2>Search your Flight</h2>
+        <br>
+        <form method="post" action="{% url 'search_by_source'%}" role="form">
+            {% csrf_token %}
+            <input class="form-control" placeholder="Search by Source" name="source" type="text">
+            <button class="btn btn-blue" type="submit">Search</button>
+        </form>
+        <br>
+        <form method="post" action="{% url 'search_by_destination'%}" role="form">
+            {% csrf_token %}
+            <input class="form-control" placeholder="Search by Destination" name="destination" type="text">
+            <button class="btn btn-blue" type="submit">Search</button>
+        </form>
+    </div>
+
+    <br> {% if flights %}
+    <h3>Flights</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class=" bg-dark white-text">
+                <tr>
+                    <th>Flight No.</th>
+                    <th>Airline</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                    <th>No. of seats</th>
+                    <th>Cost Per Seat</th>
+                    <th>Booking</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for flight in flights %}
+                <tr>
+                    <td>{{ flight.flight_no}}</td>
+                    <td>{{ flight.airline.name}}</td>
+                    <td>{{ flight.airline.source}}</td>
+                    <td>{{ flight.airline.destination}}</td>
+                    <td>{{ flight.departure_time}}</td>
+                    <td>{{ flight.arrival_time}}</td>
+                    <td>{{ flight.airline.no_of_seats }}</td>
+                    {% if flight.airline.no_of_seats > 0 %}
+                    <td> {{ flight.airline.cost_per_seat }} </td>
+                    {% else %}
+                    <td> No seat available </td>
+                    {% endif %}
+                    <td>
+                        {% if flight.airline.no_of_seats > 0 %}
+                        <a class="btn btn-green" href="{% url 'book_flight' flight.pk %}" role="button">Book Now!</a> {% else %}
+                        <button disabled type="button">Book Now!</button> {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    {% endif %}
+
+
+</main>
+
+{% endblock %}

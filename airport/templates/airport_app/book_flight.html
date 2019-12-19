@@ -1,0 +1,48 @@
+{% extends './base.html' %} {% block title %}Book Flight{% endblock %} {% block body %}
+<main class="container-fluid">
+
+
+    <form class=" mx-lg-5 border p-5" role="form" action="{% url 'book_flight' pk=flight_no %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="h2">Enter your details</legend>
+            <br><br>
+            <div class="form-group">
+                <label class="h6" for="image">Passport No</label>
+                <input type="text" class="form-control" id="passport_no" name="passport_no" placeholder="Enter passport no">
+            </div>
+            <div class="form-group">
+                <label class="h6" for="Name">Name</label>
+                <input type="text" class="form-control" id="Name" name="name" placeholder="Enter first name">
+            </div>
+            <div class="form-group">
+                <label class="h6" for="gender">Gender &nbsp &nbsp</label>
+                <input type="radio" name="gender" value="M" checked> Male
+                <input type="radio" name="gender" value="F"> Female
+            </div>
+
+            <div class="form-group">
+                <label class="h6" for="nationality">Nationality</label>
+                <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Enter nationality">
+            </div>
+
+            <div class="form-group">
+                <label class="h6" for="contact_no">Contact No</label>
+                <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Enter Contact No">
+            </div>
+            <div class="form-group">
+                <label class="h6" for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label class="h6" for="image">Image</label>
+                <input type="file" class="form-control" id="image" name="image" placeholder="Upload Your Image">
+            </div>
+
+
+            <button type="submit" class="btn btn-green btn-block">Book</button>
+        </fieldset>
+    </form>
+
+</main>
+{% endblock %}
