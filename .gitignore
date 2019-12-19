@@ -64,7 +64,7 @@ db.sqlite3-journal
 __pycache__
 db.sqlite3
 media
-
+migrations
 # Flask stuff:
 instance/
 .webassets-cache
