@@ -7,7 +7,7 @@ verify_ssl = true
 autopep8 = "*"
 
 [packages]
-django = "==2.2.18"
+django = "==2.2.20"
 pytz = "==2019.3"
 sqlparse = "==0.3.0"
 Pillow = ">=6.2.2"
